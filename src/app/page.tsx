@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Eye, Flame, ShieldCheck, Sparkles } from "lucide-react";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { AnimeSearch } from "@/components/anime-search";
+import { RecentUsers } from "@/components/recent-users";
 
 export const dynamic = "force-dynamic";
 
@@ -60,6 +61,8 @@ export default async function Home() {
         </h2>
         <AnimeSearch />
       </section>
+
+      <RecentUsers />
 
       <section className="mb-20 grid gap-4 sm:grid-cols-3">
         <Feature

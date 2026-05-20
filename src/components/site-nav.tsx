@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Search, User } from "lucide-react";
+import { Compass, Crown, Search, User } from "lucide-react";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { signOut } from "@/app/(auth)/actions";
 
@@ -33,7 +33,13 @@ export async function SiteNav() {
 
         <nav className="hidden gap-4 text-sm text-zinc-300 sm:flex">
           <Link href="/search" className="inline-flex items-center gap-1.5 hover:text-white">
-            <Search className="h-4 w-4" /> Keşfet
+            <Search className="h-4 w-4" /> Ara
+          </Link>
+          <Link href="/discover" className="inline-flex items-center gap-1.5 hover:text-white">
+            <Compass className="h-4 w-4" /> Keşfet
+          </Link>
+          <Link href="/leaderboard" className="inline-flex items-center gap-1.5 hover:text-white">
+            <Crown className="h-4 w-4" /> Sıralama
           </Link>
           {user ? (
             <Link href="/me" className="inline-flex items-center gap-1.5 hover:text-white">
