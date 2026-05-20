@@ -3,6 +3,12 @@
 -- "Görülebilir ama dokunulamaz" ilkesi RLS politikaları ile zorunlu kılınır.
 
 -- =========================================================
+-- 0) EKLENTİLER
+-- =========================================================
+-- Arama performansı için trigram benzerlik indeksi (anime_cache.title üzerinde).
+create extension if not exists pg_trgm;
+
+-- =========================================================
 -- 1) ENUM TİPLERİ
 -- =========================================================
 do $$ begin
@@ -47,8 +53,6 @@ create table if not exists public.anime_cache (
 );
 
 create index if not exists anime_cache_title_trgm_idx on public.anime_cache using gin (title gin_trgm_ops);
--- pg_trgm uzantısı aktif değilse aşağıdaki indeksi pas geçin:
--- create extension if not exists pg_trgm;
 
 -- =========================================================
 -- 4) list_entries  (kullanıcı liste kayıtları — kalbi burası)
