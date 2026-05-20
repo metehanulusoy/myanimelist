@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Profile, UserStats } from "@/lib/supabase/types";
 
@@ -13,9 +14,20 @@ export function ProfileHeader({
   return (
     <header className="rounded-2xl border border-white/10 bg-gradient-to-br from-indigo-500/10 via-transparent to-pink-500/10 p-6">
       <div className="flex flex-wrap items-start gap-6">
-        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-indigo-400 to-pink-400 text-3xl font-bold text-white shadow-xl">
-          {profile.username[0]?.toUpperCase()}
-        </div>
+        {profile.avatar_url ? (
+          <Image
+            src={profile.avatar_url}
+            alt={profile.username}
+            width={80}
+            height={80}
+            className="h-20 w-20 rounded-full border border-white/10 object-cover shadow-xl"
+            unoptimized
+          />
+        ) : (
+          <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-indigo-400 to-pink-400 text-3xl font-bold text-white shadow-xl">
+            {profile.username[0]?.toUpperCase()}
+          </div>
+        )}
         <div className="flex-1 min-w-0">
           <h1 className="text-2xl font-bold tracking-tight">
             {profile.display_name || profile.username}
